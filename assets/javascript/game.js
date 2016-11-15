@@ -25,8 +25,16 @@ document.onkeyup = function(event){
 
 }
 //referencing document and rewriting it
-weoweo("Alistar")
-function weoweo (){
+
+function displayrandomword1(){
 var display =  document.querySelector("#dummy");
-    display.innerHTML= ("wekowkfowekf");
+    display.innerHTML= randomWord1;
 }
+function blanks(strlength){
+    var string = "<p>" + randomWord1 + "</p>";
+
+    display.innerHTML = string;
+
+}
+displayrandomword1()
+blanks()
