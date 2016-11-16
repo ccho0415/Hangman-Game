@@ -11,13 +11,17 @@ var championarr = ["Aatrox", "Ahri", "Akali", "Alistar", "Amumu" ,"Anivia" ,"Ann
     "Tryndamere", "Twisted Fate", "Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Vegiar", "VelKoz", "Vi", "Viktor", "Vladimir" , "Volibear" , 
     "Warwick", "Wukong", "Xerath", "Xin Zhao", "Yasuo", "Yorick", "Zac" , "Zed", "Ziggs", "Zilean", "Zyra"];
 // Creating variable for game related stuff
+var display =  document.querySelector("#dummy");
 var wins = 0;
 var losses = 0;
 var wguess = [];
 var randomWord1 = championarr[Math.floor(Math.random()*championarr.length)];
+var drinkDiv = document.getElementById("dummy");
+
 //Console Print area here so I can see whats going on
 // console.log(championarr[3]) -> Works so it seems like the championarr works
-console.log(randomWord1);
+// console.log(randomWord1);
+// console.log(weoweo)
 //recording keystrokes written
 document.onkeyup = function(event){
     var key = event.key;
@@ -26,15 +30,27 @@ document.onkeyup = function(event){
 }
 //referencing document and rewriting it
 
-function displayrandomword1(){
-var display =  document.querySelector("#dummy");
-    display.innerHTML= randomWord1;
-}
-function blanks(strlength){
+function displayrandomword1(strlength){
     var string = "<p>" + randomWord1 + "</p>";
 
-    display.innerHTML = string;
-
 }
+function blanks(){
+    for (var i = 0; i < randomWord1.length; i++) {
+
+      var newDrinkDiv = document.createElement("span");
+
+      newDrinkDiv.innerHTML = "-";
+
+      drinkDiv.appendChild(newDrinkDiv);
+
+      console.log(randomWord1)
+  }
+
+    }
+
 displayrandomword1()
 blanks()
+
+
+
+

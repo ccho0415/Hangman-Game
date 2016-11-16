@@ -12,7 +12,7 @@ Computer generates word
         "Skarner", "Sona", "Soraka" , "Swain", "Syndra", "Tahm Kench", "Taliyah", "Talon", "Taric", "Teemo", "Thresh", "Tristana" , "Trundle", 
         "Tryndamere", "Twisted Fate", "Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Vegiar", "VelKoz", "Vi", "Viktor", "Vladimir" , "Volibear" , 
         "Warwick", "Wukong", "Xerath", "Xin Zhao", "Yasuo", "Yorick", "Zac" , "Zed", "Ziggs", "Zilean", "Zyra"];
-        Random picking
+    Random picking
         var randomWord1 = championarr[Math.floor(Math.random()*championarr.length)];
     Prints out empy spaces according to word length
 User input
