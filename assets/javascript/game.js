@@ -16,7 +16,11 @@ var wins = 0;
 var losses = 0;
 var wguess = [];
 var randomWord1 = championarr[Math.floor(Math.random()*championarr.length)];
-var drinkDiv = document.getElementById("dummy");
+var dummydiv = document.getElementById("dummy");
+
+//seperate the word into seperate objects
+var championstr = randomWord1;
+var championres = championstr.split("");
 
 //Console Print area here so I can see whats going on
 // console.log(championarr[3]) -> Works so it seems like the championarr works
@@ -28,14 +32,13 @@ document.onkeyup = function(event){
     blanks()
     var key = event.key;
 
-    if ((key==="r")){
-        console.log("you pressed r!")
+    if ((key=== championres[""])){
+        console.log("you pressed the right key!")
     }
    
 
 }
-//referencing document and rewriting 
-it
+//referencing document and rewriting it
 function blanks(){
     for (var i = 0; i < randomWord1.length; i++) {
 
@@ -43,9 +46,9 @@ function blanks(){
 
       newblankspace.innerHTML = "_ ";
 
-      dummy.append(newblankspace);
+      dummydiv.append(newblankspace);
 
-      console.log(randomWord1)
+      console.log(randomWord1);
   }
 
     }
