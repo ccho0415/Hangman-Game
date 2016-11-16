@@ -24,32 +24,37 @@ var drinkDiv = document.getElementById("dummy");
 // console.log(weoweo)
 //recording keystrokes written
 document.onkeyup = function(event){
+    displayrandomword1()
+    blanks()
     var key = event.key;
+
+    if ((key==="r")){
+        console.log("you pressed r!")
+    }
    
 
 }
-//referencing document and rewriting it
-
-function displayrandomword1(strlength){
-    var string = "<p>" + randomWord1 + "</p>";
-
-}
+//referencing document and rewriting 
+it
 function blanks(){
     for (var i = 0; i < randomWord1.length; i++) {
 
-      var newDrinkDiv = document.createElement("span");
+      var newblankspace = document.createElement("span");
 
-      newDrinkDiv.innerHTML = "-";
+      newblankspace.innerHTML = "_ ";
 
-      drinkDiv.appendChild(newDrinkDiv);
+      dummy.append(newblankspace);
 
       console.log(randomWord1)
   }
 
     }
+//display the word
+function displayrandomword1(string){
+    var string = "<p>" + randomWord1 + "</p>";
+    display.innerHTML = string;
+}
 
-displayrandomword1()
-blanks()
 
 
 
