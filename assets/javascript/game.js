@@ -26,13 +26,14 @@ var championres = championstr.split("");
 // console.log(championarr[3]) -> Works so it seems like the championarr works
 // console.log(randomWord1);
 // console.log(weoweo)
+console.log(championres)
 //recording keystrokes written
 document.onkeyup = function(event){
     displayrandomword1()
     blanks()
     var key = event.key;
 
-    if ((key=== championres[""])){
+    if ((key===championres[""])){
         console.log("you pressed the right key!")
     }
    
