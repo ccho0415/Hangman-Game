@@ -10,13 +10,20 @@ var championarr = ["Aatrox", "Ahri", "Akali", "Alistar", "Amumu" ,"Anivia" ,"Ann
     "Skarner", "Sona", "Soraka" , "Swain", "Syndra", "Tahm Kench", "Taliyah", "Talon", "Taric", "Teemo", "Thresh", "Tristana" , "Trundle", 
     "Tryndamere", "Twisted Fate", "Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Vegiar", "VelKoz", "Vi", "Viktor", "Vladimir" , "Volibear" , 
     "Warwick", "Wukong", "Xerath", "Xin Zhao", "Yasuo", "Yorick", "Zac" , "Zed", "Ziggs", "Zilean", "Zyra"];
+//Creating an object for messages
+messages = {
+    win: "W",
+    lose: "L"
+};
 // Creating variable for game related stuff
 var display =  document.querySelector("#dummy");
+var letters = "abcdefghijklmnopqrstuvwxyz";
 var wins = 0;
 var losses = 0;
-var wguess = [];
+var chances = 5;
 var randomWord1 = championarr[Math.floor(Math.random()*championarr.length)];
 var dummydiv = document.getElementById("dummy");
+
 
 //seperate the word into seperate objects
 var championstr = randomWord1;
@@ -25,18 +32,22 @@ var championres = championstr.split("");
 //Console Print area here so I can see whats going on
 // console.log(championarr[3]) -> Works so it seems like the championarr works
 // console.log(randomWord1);
-// console.log(weoweo)
-console.log(championres)
+// console.log(weoweo);
+console.log(championres);
+
 //recording keystrokes written
 document.onkeyup = function(event){
     displayrandomword1()
     blanks()
     var key = event.key;
 
+
     if ((key===championres[""])){
         console.log("you pressed the right key!")
+        // Add append option
     }
-   
+
+
 
 }
 //referencing document and rewriting it
@@ -58,7 +69,6 @@ function displayrandomword1(string){
     var string = "<p>" + randomWord1 + "</p>";
     display.innerHTML = string;
 }
-
 
 
 
