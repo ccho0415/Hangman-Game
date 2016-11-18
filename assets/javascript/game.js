@@ -12,11 +12,11 @@ var champions = ["AATROX", "AHRI", "AKALI", "ALISTAR", "AMUMU", "ANIVIA", "ANNIE
   "TRYNDAMERE", "TWISTED FATE", "TWITCH", "UDYR", "URGOT", "VARUS", "VAYNE", "VEGIAR", "VELKOZ", "VI", "VIKTOR", "VLADIMIR", "VOLIBEAR",
   "WARWICK", "WUKONG", "XERATH", "XIN ZHAO", "YASUO", "YORICK", "ZAC", "ZED", "ZIGGS", "ZILEAN", "ZYRA"
 ];
+//This is going to be part of the letter checker Part one
 var input = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 // Creating variable for game related stuff
 var randomIndex = Math.floor(Math.random() * champions.length);
 var word = champions[randomIndex];
-// var textTyped = " ";
 var wins = 0;
 var losses = 0;
 var chances = 5;
@@ -29,11 +29,7 @@ var resultprint = document.querySelector("#results")
 
 // //seperate the word into seperate objects
 var championstr = word.split("");
-// //Console Print area here so I can see whats going on
-console.log(lettersdiv)
-console.log(championstr);
-//This is how you call a specific letter!
-console.log(championstr[0]);
+
 //lets make blanks!
 function blanks() {
 
@@ -77,20 +73,40 @@ document.onkeyup = function(event){
 // but key is a letter
 // so they will never be equal
 // you should be comparing to -1
+//Letter Checker Part 1
     if (-1 !== input.indexOf(key)){
-      displayResults();
       console.log("you pressed the right kind of key!");
+//Letter Checker Part 2
         if (-1 !== championstr.indexOf(key)){
+// fill in correct blank (blt 0 - ???)
           outputs.push(key);
           outputdiv.innerHTML = outputs;
           displayResults();
-            console.log("yay");
-            }else{
+          console.log("yay");
+// okay when word is completely filled win count has to go up by one!
+          }else{
             displayResults();
-              console.log("nay"); }
-            }else{
+            console.log("nay"); }
+    }else{
       console.log("what are you doing to me!");
       }
   }
 
 
+
+// function wordcomplete(){
+//   if (outputs == championstr[]){
+//             console.log("wwwwwwww");
+//             wins++
+//             displayResults();
+//           }else{
+//           outputs = outputs + key;
+//           outputdiv.innerHTML = outputs;
+//           }
+// }
+
+// //Console Print area here so I can see whats going on
+console.log(lettersdiv)
+console.log(championstr);
+//This is how you call a specific letter!
+console.log(championstr[0]);
