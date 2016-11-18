@@ -15,19 +15,24 @@ Computer generates word
     Random picking
         var randomIndex = Math.floor(Math.random() * champions.length);
     Prints out empy spaces according to word length
-        function blanks(){
-        for (var i = 0; i < randomWord1.length; i++) {
+        function blanks() {
 
-        var newDrinkDiv = document.createElement("span");
+         for (var i = 0; i < word.length; i++) {
 
-        newDrinkDiv.innerHTML = "-";
-
-        drinkDiv.appendChild(newDrinkDiv);
-
-        console.log(randomWord1)
-        }
-
-        }
+        var letterSpan = document.createElement("span");
+        //add classes to each newly created span
+        letterSpan.className = "blank"+ i;
+        console.log(letterSpan)
+        if (word[i] ===" ") {
+        letterSpan.innerHTML = "-";
+        } else {
+        letterSpan.innerHTML = " _ ";
+ 
+       }
+        lettersdiv.appendChild(letterSpan);
+        console.log(randomIndex);
+  }
+}
 User input
     Correct
         Rewrite the empty space with user input

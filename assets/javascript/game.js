@@ -21,45 +21,54 @@ var wins = 0;
 var losses = 0;
 var chances = 5;
 var guesses = [];
-
+var outputs = [];
 var lettersdiv = document.getElementById("letters");
 var outputdiv = document.getElementById("output");
 var letterSpan = document.createElement("span");
-
-console.log(lettersdiv)
+var resultprint = document.querySelector("#results")
 
 // //seperate the word into seperate objects
 var championstr = word.split("");
 // //Console Print area here so I can see whats going on
-// // console.log(championarr[3]) -> Works so it seems like the championarr works
-// // console.log(randomIndex);
-// // console.log(weoweo);
+console.log(lettersdiv)
 console.log(championstr);
 //This is how you call a specific letter!
 console.log(championstr[0]);
 //lets make blanks!
-
 function blanks() {
 
   for (var i = 0; i < word.length; i++) {
 
     var letterSpan = document.createElement("span");
+//add classes to each newly created span
+    letterSpan.className = "blt" + i;
     console.log(letterSpan)
     if (word[i] ===" ") {
       letterSpan.innerHTML = "-";
     } else {
       letterSpan.innerHTML = " _ ";
+ 
     }
     lettersdiv.appendChild(letterSpan);
     console.log(randomIndex);
   }
 }
+
+function displayResults(w,l,inp){
+  var results = "<p>" + wins + "</p>";
+  results += "<p>"+ losses + "</p>";
+  results += "<p>"+ guesses + "</p>";
+  resultprint.innerHTML = results;
+}
+
 blanks();
-  // keystrokes!
-  document.onkeyup = function(event){
-    var key = String.fromCharCode(event.keyCode);
+var correctinput = document.getElementsByClassName("blt");
+// keystrokes!
+document.onkeyup = function(event){
+  var key = String.fromCharCode(event.keyCode);
+  guesses.push(key);
 //proper types of keystrokes since indexof() prints out 1 if its in just got to make sure that we compare it to -1
-//   key === input.indexOf(key)
+// key === input.indexOf(key)
 // ex: "a" === input.indexOf("a")
 // "a" === 0
 // so if you just plug in a
@@ -68,43 +77,20 @@ blanks();
 // but key is a letter
 // so they will never be equal
 // you should be comparing to -1
-        if (-1 !== input.indexOf(key)){
-          console.log("you pressed the right kind of key!");
-              if (-1 !== championstr.indexOf(key)){
-                letterSpan.innerHTML = key;
-                console.log("yay");
-              }else{
-                console.log("nay"); }
-              }else{
-        console.log("what are you doing to me!");
+    if (-1 !== input.indexOf(key)){
+      displayResults();
+      console.log("you pressed the right kind of key!");
+        if (-1 !== championstr.indexOf(key)){
+          outputs.push(key);
+          outputdiv.innerHTML = outputs;
+          displayResults();
+            console.log("yay");
+            }else{
+            displayResults();
+              console.log("nay"); }
+            }else{
+      console.log("what are you doing to me!");
       }
   }
-        // guesses.push(key);
-      // if (key == input[0]){
-      //   guesses.push(key);
-      //   console.log("you pressed the right kind of key!");
-      // } else{
-      //   console.log("what are you doing to me!");
-      // }
-
-        
-       
-        // Add append option
-
-    //   if (key == championstr) {
-    //     console.log("you pressed the right key!");
-    //     }else{
-    //     console.log("nope");
-    // }
-
-    //   } 
 
 
-//referencing document and rewriting it
-
-
-// //display the word
-// function displayrandomIndex(string){
-//     var string = "<p>" + randomIndex + "</p>";
-//     display.innerHTML = string;
-// }
