@@ -23,6 +23,7 @@ var chances = 5;
 var guesses = [];
 
 var lettersdiv = document.getElementById("letters");
+var outputdiv = document.getElementById("output");
 
 
 console.log(lettersdiv)
@@ -61,20 +62,31 @@ function blanks() {
 
 }
 blanks();
-  // //recording keystrokes written
+  // keystrokes!
   document.onkeyup = function(event){
-      var key = event.key;
-      if (key == input[0]){
-        guesses.push(key);
-        console.log("you pressed the right kind of key!");
-      } else{
+      var key = String.fromCharCode(event.keyCode)
+  //proper types of keystrokes
+        if (key === input.indexOf(key)){
+          console.log("you pressed the right kind of key!");
+              if (key === championstr.indexOf(key)){
+                console.log("yay");
+              }else{
+                console.log("nay"); }
+              }else{
         console.log("what are you doing to me!");
       }
+  }
+        // guesses.push(key);
+      // if (key == input[0]){
+      //   guesses.push(key);
+      //   console.log("you pressed the right kind of key!");
+      // } else{
+      //   console.log("what are you doing to me!");
+      // }
 
         
        
         // Add append option
-    } 
 
     //   if (key == championstr) {
     //     console.log("you pressed the right key!");
