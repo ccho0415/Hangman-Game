@@ -13,7 +13,7 @@ Computer generates word
         "Tryndamere", "Twisted Fate", "Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Vegiar", "VelKoz", "Vi", "Viktor", "Vladimir" , "Volibear" , 
         "Warwick", "Wukong", "Xerath", "Xin Zhao", "Yasuo", "Yorick", "Zac" , "Zed", "Ziggs", "Zilean", "Zyra"];
     Random picking
-        var randomWord1 = championarr[Math.floor(Math.random()*championarr.length)];
+        var randomIndex = Math.floor(Math.random() * champions.length);
     Prints out empy spaces according to word length
         function blanks(){
         for (var i = 0; i < randomWord1.length; i++) {

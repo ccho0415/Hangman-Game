@@ -11,18 +11,19 @@ var champions = ["Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie
   "Tryndamere", "Twisted Fate", "Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Vegiar", "VelKoz", "Vi", "Viktor", "Vladimir", "Volibear",
   "Warwick", "Wukong", "Xerath", "Xin Zhao", "Yasuo", "Yorick", "Zac", "Zed", "Ziggs", "Zilean", "Zyra"
 ];
-
+var input = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", 
+            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 // Creating variable for game related stuff
 var randomIndex = Math.floor(Math.random() * champions.length);
-var display = document.querySelector("#letters");
-
 var word = champions[randomIndex];
-var textTyped = " ";
+// var textTyped = " ";
 var wins = 0;
 var losses = 0;
 var chances = 5;
+var guesses = [];
 
 var lettersdiv = document.getElementById("letters");
+
 
 console.log(lettersdiv)
 
@@ -36,6 +37,8 @@ var championstr = word.split("");
 // // console.log(randomIndex);
 // // console.log(weoweo);
 console.log(championstr);
+//This is how you call a specific letter!
+console.log(championstr[0]);
 //lets make blanks!
 
 function blanks() {
@@ -44,8 +47,8 @@ function blanks() {
 
     var letterSpan = document.createElement("span");
     console.log(letterSpan)
-    if (word[i] === " ") {
-      letterSpan.innerHTML = " ";
+    if (word[i] ===" ") {
+      letterSpan.innerHTML = "-";
     } else {
       letterSpan.innerHTML = " _ ";
     }
@@ -59,24 +62,29 @@ function blanks() {
 }
 blanks();
   // //recording keystrokes written
-  // document.onkeyup = function(event){
-  //     var key = event.key;
+  document.onkeyup = function(event){
+      var key = event.key;
+      if (key == input[0]){
+        guesses.push(key);
+        console.log("you pressed the right kind of key!");
+      } else{
+        console.log("what are you doing to me!");
+      }
+
+        
+       
+        // Add append option
+    } 
+
+    //   if (key == championstr) {
+    //     console.log("you pressed the right key!");
+    //     }else{
+    //     console.log("nope");
+    // }
+
+    //   } 
 
 
-//     if ((textTyped == championstr)){
-//         console.log("you pressed the right key!")
-//         wins ++;
-//         document.querySelector("#wins").innerHTML = wins;
-//         ranNum = Math.floor(Math.random()*champions.length);
-//         // Add append option
-//     } else{
-//         textTyped = textTyped + key;
-//         document.querySelector("#output").innerHTML = textTyped;
-//     }
-
-
-
-// }
 //referencing document and rewriting it
 
 
