@@ -47,7 +47,7 @@ var letterSpan = document.createElement("span");
 var resultprint = document.querySelector("#results")
 var lettersdiv = document.getElementById("letters");
 var outputdiv = document.getElementById("output");
-
+var bltstring = [];
 
 
 //lets make blanks!
@@ -57,7 +57,7 @@ function blanks() {
 
     var letterSpan = document.createElement("span");
 //add classes to each newly created span
-    letterSpan.className = "blt" + i;
+    letterSpan.className = "blt";
     console.log(letterSpan)
     if (word[i] ===" ") {
       letterSpan.innerHTML = "-";
@@ -71,7 +71,7 @@ function blanks() {
 //putting letter values to the spans
 function matchthis(){
   for (var i = 0; i <word.length; i++){
-    var bltgrab = document.getElementsByClassName("blt"+i).value=championstr[i];
+    var bltgrab = document.getElementsByClassName("blt").value=championstr[i];
     console.log(bltgrab)
   }
 
@@ -108,7 +108,10 @@ document.onkeyup = function(event){
       console.log("you pressed the right kind of key!");
       guesses.push(key);
 //Letter Checker Part 2
-        if (-1 !== championstr.indexOf(key) || (-1 < guesses.indexOf(key))){
+        if (-1 !== championstr.indexOf(key)
+  // this is not working as intended 
+          // || (-1 < guesses.indexOf(key))
+          ){
           cguesses.push(key);
           numLettersMatch++;
           console.log(numLettersMatch);
@@ -117,6 +120,8 @@ document.onkeyup = function(event){
           // outputdiv.innerHTML = outputs;
           displayResults();
           console.log("yay");
+          var bltdiv = document.getElementsByClassName("blt");
+            bltdiv.innerHTML = key;
 // okay when word is completely filled win count has to go up by one! this is kinda buggy
           if (numLettersMatch === championstr.length){
             console.log("you win!")
