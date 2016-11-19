@@ -18,7 +18,8 @@ var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
 // the champion number
 var randomIndex = Math.floor(Math.random() * champions.length);
 // the champion name
-var word = champions[randomIndex];
+// var word = champions[randomIndex];
+var word = "WUKONG";
 //seperate the word into an array
 var currentWord = word.split("");
 //storing messages as objects
@@ -70,6 +71,20 @@ function blanks() {
   }
   displayedWord = "";
 }
+function wincondition(){
+    if (cguesses.length === currentWord.length){
+      wins++;
+      displayResults();
+  }
+}
+function losscondition(){
+    chances--;
+    if (chances === 0){
+      losses++;
+      displayResults();
+    }
+
+}
 
 function displayResults(){
   var results = "<p>"+ resultmsg.wins + wins + "</p>" ;
@@ -92,12 +107,13 @@ document.onkeyup = function(event){
 // check if key is within word
   if (currentWord.indexOf(event.key.toUpperCase()) !== -1) {
     cguesses.push(event.key.toUpperCase());
-    numLettersMatch++;
-    displayResults();
+    wincondition();
+
 // if key is not within word
   }else{
      wguesses.push(event.key.toUpperCase());
-     displayResults();
+     losscondition();
+
   }
 // pushing correct key to blanks
   for (var i = 0; i < currentWord.length; i++) {
@@ -109,6 +125,7 @@ document.onkeyup = function(event){
       displayedWord += "_";
     }   
   }
+
       letterSpan.innerHTML = displayedWord;
 // if key isnt in alphabet break message!
   }else{
@@ -135,12 +152,11 @@ document.onkeyup = function(event){
 // this part is insert into the working code line 93
         if (-1 !== currentWord.indexOf(event.key.toUpperCase())
   // this is not working as intended 
-          // || (-1 < guesses.indexOf(key))
+          || (-1 < guesses.indexOf(key))
           ){
           cguesses.push(key);
           numLettersMatch++;
           console.log(numLettersMatch);
-// fill in correct blank (blt 0 - ???)
           displayResults();
           console.log("yay");
 // this part is replaced in the working code line 104 (let's not make things into 
