@@ -13,12 +13,12 @@ var champions = ["AATROX", "AHRI", "AKALI", "ALISTAR", "AMUMU", "ANIVIA", "ANNIE
   "WARWICK", "WUKONG", "XERATH", "XIN ZHAO", "YASUO", "YORICK", "ZAC", "ZED", "ZIGGS", "ZILEAN", "ZYRA"
 ];
 //This is going to be part of the letter checker Part one
-var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+               "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 // the champion number
 var randomIndex = Math.floor(Math.random() * champions.length);
 // the champion name
-// var word = champions[randomIndex];
-var word = "WUKONG";
+var word = champions[randomIndex];
 //seperate the word into an array
 var currentWord = word.split("");
 //storing messages as objects
@@ -49,6 +49,7 @@ var numLettersMatch = 0;
 var resultprint = document.querySelector("#results")
 var lettersdiv = document.getElementById("letters");
 var outputdiv = document.getElementById("output");
+// added 1 span to the document and calling it here
 var letterSpan = document.querySelector(".word-container");
 // var bltstring = [];
 
@@ -56,9 +57,8 @@ var letterSpan = document.querySelector(".word-container");
 //lets make blanks!
 function blanks() {
   for (var i = 0; i < currentWord.length; i++) {
-//add classes to each newly created span
-    
     console.log(letterSpan)
+// if there are spaces in the word leave a space!
     if (currentWord[i] ===" ") {
       displayedWord += " ";
     } else {
@@ -80,21 +80,26 @@ function displayResults(){
 
   resultprint.innerHTML = results;
 }
-
 blanks();
 displayResults();
-// keystrokes!
+// on keystroke!
 document.onkeyup = function(event){
   var key = event.key;
+// check if key is within alphabet
   if (-1 !== alphabet.indexOf(key)){
   guesses.push(key.toUpperCase());
-  }else{
-      alert("what are you doing to me!");
-      }
   displayedWord = "";
+// check if key is within word
   if (currentWord.indexOf(event.key.toUpperCase()) !== -1) {
     cguesses.push(event.key.toUpperCase());
+    numLettersMatch++;
+    displayResults();
+// if key is not within word
+  }else{
+     wguesses.push(event.key.toUpperCase());
+     displayResults();
   }
+// pushing correct key to blanks
   for (var i = 0; i < currentWord.length; i++) {
     if (cguesses.indexOf(currentWord[i]) !== -1) {
       displayedWord += currentWord[i];
@@ -104,8 +109,12 @@ document.onkeyup = function(event){
       displayedWord += "_";
     }   
   }
-      console.log(displayedWord);
       letterSpan.innerHTML = displayedWord;
+// if key isnt in alphabet break message!
+  }else{
+      alert("what are you doing to me!");
+      }
+ 
     return;
 
 //Scrapping underneath portion ( not using it)
@@ -119,12 +128,12 @@ document.onkeyup = function(event){
 // but key is a letter
 // so they will never be equal
 // you should be comparing to -1
-//Letter Checker Part 1
+// this part is inserted into the working code in line 89
     if (-1 !== alphabet.indexOf(key)){
       console.log("you pressed the right kind of key!");
-      guesses.push(key);
-//Letter Checker Part 2
-        if (-1 !== currentWord.indexOf(key)
+      guesses.push(key.toUpperCase());
+// this part is insert into the working code line 93
+        if (-1 !== currentWord.indexOf(event.key.toUpperCase())
   // this is not working as intended 
           // || (-1 < guesses.indexOf(key))
           ){
@@ -134,6 +143,8 @@ document.onkeyup = function(event){
 // fill in correct blank (blt 0 - ???)
           displayResults();
           console.log("yay");
+// this part is replaced in the working code line 104 (let's not make things into 
+// seperate spans... that just breaks things)
           for (var i = 0; i <currentWord; i++) {
             var bltdiv = document.getElementsByClassName("blt");
             bltdiv.innerHTML = cguesses[i];
