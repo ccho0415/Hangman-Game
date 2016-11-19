@@ -50,14 +50,12 @@ var resultprint = document.querySelector("#results")
 var lettersdiv = document.getElementById("letters");
 var outputdiv = document.getElementById("output");
 var letterSpan = document.querySelector(".word-container");
-var bltstring = [];
+// var bltstring = [];
 
 
 //lets make blanks!
 function blanks() {
   for (var i = 0; i < currentWord.length; i++) {
-
-    
 //add classes to each newly created span
     
     console.log(letterSpan)
@@ -72,14 +70,6 @@ function blanks() {
   }
   displayedWord = "";
 }
-//putting letter values to the spans
-function matchthis(){
-  for (var i = 0; i <word.length; i++){
-    var bltgrab = document.getElementsByClassName("blt").value=currentWord[i];
-    console.log(bltgrab)
-  }
-
-    }
 
 function displayResults(){
   var results = "<p>"+ resultmsg.wins + wins + "</p>" ;
@@ -92,12 +82,15 @@ function displayResults(){
 }
 
 blanks();
-matchthis();
 displayResults();
 // keystrokes!
 document.onkeyup = function(event){
   var key = event.key;
+  if (-1 !== alphabet.indexOf(key)){
   guesses.push(key.toUpperCase());
+  }else{
+      alert("what are you doing to me!");
+      }
   displayedWord = "";
   if (currentWord.indexOf(event.key.toUpperCase()) !== -1) {
     cguesses.push(event.key.toUpperCase());
@@ -109,23 +102,13 @@ document.onkeyup = function(event){
       displayedWord += " ";
     } else {
       displayedWord += "_";
-    }
-
-    
-//add classes to each newly created span
-
-    // if (currentWord[i] === " ") {
-    //   displayedWord[i] = " ";
-    // } else if (currentWord[i] !== key.toUpperCase()) {
-    //   displayedWord[i] = " _ ";
-    // } else {
-    //   displayedWord[i] = key.toUpperCase();
-    // }
-    
+    }   
   }
       console.log(displayedWord);
       letterSpan.innerHTML = displayedWord;
     return;
+
+//Scrapping underneath portion ( not using it)
 //proper types of keystrokes since indexof() prints out 1 if its in just got to make sure that we compare it to -1
 // key === alphabet.indexOf(key)
 // ex: "a" === alphabet.indexOf("a")
@@ -181,3 +164,12 @@ console.log(lettersdiv)
 console.log(currentWord);
 //This is how you call a specific letter!
 console.log(currentWord[0]);
+//
+//putting letter values to the spans
+// function matchthis(){
+//   for (var i = 0; i <word.length; i++){
+//     var bltgrab = document.getElementsByClassName("blt").value=currentWord[i];
+//     console.log(bltgrab)
+//   }
+
+//     }
