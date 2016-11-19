@@ -13,22 +13,22 @@ var champions = ["AATROX", "AHRI", "AKALI", "ALISTAR", "AMUMU", "ANIVIA", "ANNIE
   "WARWICK", "WUKONG", "XERATH", "XIN ZHAO", "YASUO", "YORICK", "ZAC", "ZED", "ZIGGS", "ZILEAN", "ZYRA"
 ];
 //This is going to be part of the letter checker Part one
-var input = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 // Creating variable for game related stuff
 var randomIndex = Math.floor(Math.random() * champions.length);
 var word = champions[randomIndex];
+// //seperate the word into seperate objects
+var championstr = word.split("");
 var wins = 0;
 var losses = 0;
 var chances = 5;
 var guesses = [];
 var outputs = [];
+var holder = [];
 var lettersdiv = document.getElementById("letters");
 var outputdiv = document.getElementById("output");
 var letterSpan = document.createElement("span");
 var resultprint = document.querySelector("#results")
-
-// //seperate the word into seperate objects
-var championstr = word.split("");
 
 //lets make blanks!
 function blanks() {
@@ -49,6 +49,15 @@ function blanks() {
     console.log(randomIndex);
   }
 }
+//putting inner HTML values to the spans
+function matchthis(){
+  for (var i = 0; i <word.length; i++){
+    var bltgrab = document.getElementsByClassName("blt"+i);
+    console.log(bltgrab);
+    bltgrab.innerHTML=championstr[i]
+  }
+
+    }
 
 function displayResults(w,l,inp){
   var results = "<p>" + wins + "</p>";
@@ -58,14 +67,13 @@ function displayResults(w,l,inp){
 }
 
 blanks();
-var correctinput = document.getElementsByClassName("blt");
+matchthis();
 // keystrokes!
 document.onkeyup = function(event){
   var key = String.fromCharCode(event.keyCode);
-  guesses.push(key);
 //proper types of keystrokes since indexof() prints out 1 if its in just got to make sure that we compare it to -1
-// key === input.indexOf(key)
-// ex: "a" === input.indexOf("a")
+// key === alphabet.indexOf(key)
+// ex: "a" === alphabet.indexOf("a")
 // "a" === 0
 // so if you just plug in a
 // indexOf("a") checks for the position in the array
@@ -74,13 +82,17 @@ document.onkeyup = function(event){
 // so they will never be equal
 // you should be comparing to -1
 //Letter Checker Part 1
-    if (-1 !== input.indexOf(key)){
+    if (-1 !== alphabet.indexOf(key)){
       console.log("you pressed the right kind of key!");
 //Letter Checker Part 2
         if (-1 !== championstr.indexOf(key)){
+          console.log(holder);
+          holder.push(key);
+          console.log(holder);
+          outputdiv.innerHTML = holder;
 // fill in correct blank (blt 0 - ???)
-          outputs.push(key);
-          outputdiv.innerHTML = outputs;
+          // outputs.push(key);
+          // outputdiv.innerHTML = outputs;
           displayResults();
           console.log("yay");
 // okay when word is completely filled win count has to go up by one!
