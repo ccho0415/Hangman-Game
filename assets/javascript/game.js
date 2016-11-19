@@ -17,9 +17,10 @@ var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
 // the champion number
 var randomIndex = Math.floor(Math.random() * champions.length);
 // the champion name
-var word = champions[randomIndex];
+// var word = champions[randomIndex];
+var word = "WUKONG";
 //seperate the word into an array
-var championstr = word.split("");
+var currentWord = word.split("");
 //storing messages as objects
 var resultmsg ={
   wins: "Wins:",
@@ -34,44 +35,47 @@ var losses = 0;
 var chances = 5;
 var wguesses = [];
 var cguesses = [];
+var displayedWord = "";
 // don't want repeated letters
 var guesses = [];
 
 //
-var lettersMatched = [];
+var lettersMatched = cguesses.length;
 //win condition
 var numLettersMatch = 0;
 //Creating spans
-var letterSpan = document.createElement("span");
+
 //Calling certain parts of HTML
 var resultprint = document.querySelector("#results")
 var lettersdiv = document.getElementById("letters");
 var outputdiv = document.getElementById("output");
+var letterSpan = document.querySelector(".word-container");
 var bltstring = [];
 
 
 //lets make blanks!
 function blanks() {
+  for (var i = 0; i < currentWord.length; i++) {
 
-  for (var i = 0; i < word.length; i++) {
-
-    var letterSpan = document.createElement("span");
+    
 //add classes to each newly created span
-    letterSpan.className = "blt";
+    
     console.log(letterSpan)
-    if (word[i] ===" ") {
-      letterSpan.innerHTML = "-";
+    if (currentWord[i] ===" ") {
+      displayedWord += " ";
     } else {
-      letterSpan.innerHTML = " _ ";
+      displayedWord += " _ ";
  
     }
+    letterSpan.innerHTML = displayedWord;
     lettersdiv.appendChild(letterSpan);
   }
+  displayedWord = "";
 }
 //putting letter values to the spans
 function matchthis(){
   for (var i = 0; i <word.length; i++){
-    var bltgrab = document.getElementsByClassName("blt").value=championstr[i];
+    var bltgrab = document.getElementsByClassName("blt").value=currentWord[i];
     console.log(bltgrab)
   }
 
@@ -92,7 +96,36 @@ matchthis();
 displayResults();
 // keystrokes!
 document.onkeyup = function(event){
-  var key = String.fromCharCode(event.keyCode);
+  var key = event.key;
+  guesses.push(key.toUpperCase());
+  displayedWord = "";
+  if (currentWord.indexOf(event.key.toUpperCase()) !== -1) {
+    cguesses.push(event.key.toUpperCase());
+  }
+  for (var i = 0; i < currentWord.length; i++) {
+    if (cguesses.indexOf(currentWord[i]) !== -1) {
+      displayedWord += currentWord[i];
+    } else if (currentWord[i] === " ") {
+      displayedWord += " ";
+    } else {
+      displayedWord += "_";
+    }
+
+    
+//add classes to each newly created span
+
+    // if (currentWord[i] === " ") {
+    //   displayedWord[i] = " ";
+    // } else if (currentWord[i] !== key.toUpperCase()) {
+    //   displayedWord[i] = " _ ";
+    // } else {
+    //   displayedWord[i] = key.toUpperCase();
+    // }
+    
+  }
+      console.log(displayedWord);
+      letterSpan.innerHTML = displayedWord;
+    return;
 //proper types of keystrokes since indexof() prints out 1 if its in just got to make sure that we compare it to -1
 // key === alphabet.indexOf(key)
 // ex: "a" === alphabet.indexOf("a")
@@ -108,7 +141,7 @@ document.onkeyup = function(event){
       console.log("you pressed the right kind of key!");
       guesses.push(key);
 //Letter Checker Part 2
-        if (-1 !== championstr.indexOf(key)
+        if (-1 !== currentWord.indexOf(key)
   // this is not working as intended 
           // || (-1 < guesses.indexOf(key))
           ){
@@ -116,14 +149,14 @@ document.onkeyup = function(event){
           numLettersMatch++;
           console.log(numLettersMatch);
 // fill in correct blank (blt 0 - ???)
-          // outputs.push(key);
-          // outputdiv.innerHTML = outputs;
           displayResults();
           console.log("yay");
-          var bltdiv = document.getElementsByClassName("blt");
-            bltdiv.innerHTML = key;
+          for (var i = 0; i <currentWord; i++) {
+            var bltdiv = document.getElementsByClassName("blt");
+            bltdiv.innerHTML = cguesses[i];
+            } 
 // okay when word is completely filled win count has to go up by one! this is kinda buggy
-          if (numLettersMatch === championstr.length){
+          if (numLettersMatch === currentWord.length){
             console.log("you win!")
             wins++;
             displayResults();
@@ -145,6 +178,6 @@ document.onkeyup = function(event){
   }
 // //Console Print area here so I can see whats going on
 console.log(lettersdiv)
-console.log(championstr);
+console.log(currentWord);
 //This is how you call a specific letter!
-console.log(championstr[0]);
+console.log(currentWord[0]);
