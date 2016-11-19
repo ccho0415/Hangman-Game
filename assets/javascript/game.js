@@ -14,21 +14,41 @@ var champions = ["AATROX", "AHRI", "AKALI", "ALISTAR", "AMUMU", "ANIVIA", "ANNIE
 ];
 //This is going to be part of the letter checker Part one
 var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-// Creating variable for game related stuff
+// the champion number
 var randomIndex = Math.floor(Math.random() * champions.length);
+// the champion name
 var word = champions[randomIndex];
-// //seperate the word into seperate objects
+//seperate the word into an array
 var championstr = word.split("");
+//storing messages as objects
+var resultmsg ={
+  wins: "Wins:",
+  losses: "Losses:",
+  chances: "Chances:",
+  wguesses: "Wrong Guesses:",
+  cguesses: "Correct Guesses:"
+}
+//adding values to certain variables
 var wins = 0;
 var losses = 0;
 var chances = 5;
+var wguesses = [];
+var cguesses = [];
+// don't want repeated letters
 var guesses = [];
-var outputs = [];
-var holder = [];
+
+//
+var lettersMatched = [];
+//win condition
+var numLettersMatch = 0;
+//Creating spans
+var letterSpan = document.createElement("span");
+//Calling certain parts of HTML
+var resultprint = document.querySelector("#results")
 var lettersdiv = document.getElementById("letters");
 var outputdiv = document.getElementById("output");
-var letterSpan = document.createElement("span");
-var resultprint = document.querySelector("#results")
+
+
 
 //lets make blanks!
 function blanks() {
@@ -46,28 +66,30 @@ function blanks() {
  
     }
     lettersdiv.appendChild(letterSpan);
-    console.log(randomIndex);
   }
 }
-//putting inner HTML values to the spans
+//putting letter values to the spans
 function matchthis(){
   for (var i = 0; i <word.length; i++){
-    var bltgrab = document.getElementsByClassName("blt"+i);
-    console.log(bltgrab);
-    bltgrab.innerHTML=championstr[i]
+    var bltgrab = document.getElementsByClassName("blt"+i).value=championstr[i];
+    console.log(bltgrab)
   }
 
     }
 
-function displayResults(w,l,inp){
-  var results = "<p>" + wins + "</p>";
-  results += "<p>"+ losses + "</p>";
-  results += "<p>"+ guesses + "</p>";
+function displayResults(){
+  var results = "<p>"+ resultmsg.wins + wins + "</p>" ;
+  results += "<p>"+ resultmsg.losses+ losses + "</p>";
+  results += "<p>"+ resultmsg.chances + chances + "</p>";
+  results += "<p>"+ resultmsg.cguesses + cguesses + "</p>";
+  results += "<p>"+ resultmsg.wguesses + wguesses + "</p>";
+
   resultprint.innerHTML = results;
 }
 
 blanks();
 matchthis();
+displayResults();
 // keystrokes!
 document.onkeyup = function(event){
   var key = String.fromCharCode(event.keyCode);
@@ -84,39 +106,38 @@ document.onkeyup = function(event){
 //Letter Checker Part 1
     if (-1 !== alphabet.indexOf(key)){
       console.log("you pressed the right kind of key!");
+      guesses.push(key);
 //Letter Checker Part 2
-        if (-1 !== championstr.indexOf(key)){
-          console.log(holder);
-          holder.push(key);
-          console.log(holder);
-          outputdiv.innerHTML = holder;
+        if (-1 !== championstr.indexOf(key) || (-1 < guesses.indexOf(key))){
+          cguesses.push(key);
+          numLettersMatch++;
+          console.log(numLettersMatch);
 // fill in correct blank (blt 0 - ???)
           // outputs.push(key);
           // outputdiv.innerHTML = outputs;
           displayResults();
           console.log("yay");
-// okay when word is completely filled win count has to go up by one!
+// okay when word is completely filled win count has to go up by one! this is kinda buggy
+          if (numLettersMatch === championstr.length){
+            console.log("you win!")
+            wins++;
+            displayResults();
+            }else{
+            losses++;
+            console.log("keep trying.")
+            displayResults();
+            }
+
+
           }else{
             displayResults();
-            console.log("nay"); }
+            console.log("nay");
+            wguesses.push(key);
+          }
     }else{
       console.log("what are you doing to me!");
       }
   }
-
-
-
-// function wordcomplete(){
-//   if (outputs == championstr[]){
-//             console.log("wwwwwwww");
-//             wins++
-//             displayResults();
-//           }else{
-//           outputs = outputs + key;
-//           outputdiv.innerHTML = outputs;
-//           }
-// }
-
 // //Console Print area here so I can see whats going on
 console.log(lettersdiv)
 console.log(championstr);
