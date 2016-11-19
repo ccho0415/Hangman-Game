@@ -18,8 +18,7 @@ var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
 // the champion number
 var randomIndex = Math.floor(Math.random() * champions.length);
 // the champion name
-// var word = champions[randomIndex];
-var word = "WUKONG";
+var word = champions[randomIndex];
 //seperate the word into an array
 var currentWord = word.split("");
 //storing messages as objects
@@ -186,17 +185,12 @@ document.onkeyup = function(event){
       console.log("what are you doing to me!");
       }
   }
-// //Console Print area here so I can see whats going on
-console.log(lettersdiv)
-console.log(currentWord);
-//This is how you call a specific letter!
-console.log(currentWord[0]);
-//
-//putting letter values to the spans
-// function matchthis(){
-//   for (var i = 0; i <word.length; i++){
-//     var bltgrab = document.getElementsByClassName("blt").value=currentWord[i];
-//     console.log(bltgrab)
-//   }
-
-//     }
+// well it clears stuff but it doesnt reset
+    function clearfunction(){
+    clearletters = document.getElementById("letters");
+    clearletters.innerHTML = "";
+    var randomIndex; 
+    } 
+   
+// Reset button on click
+document.getElementById("reset").onclick = function() {clearfunction()};
